@@ -456,7 +456,6 @@ def spec_to_job(spec: JobSpec, key: str, trackmem_symbol_names: bool) -> JobDeta
         case SdlPlatform.Ios | SdlPlatform.Tvos:
             job.brew_packages.extend([
                 "ninja",
-                "pkg-config",
             ])
             job.clang_tidy = False
             job.run_tests = False
@@ -502,8 +501,6 @@ def spec_to_job(spec: JobSpec, key: str, trackmem_symbol_names: bool) -> JobDeta
                 job.static_lib = StaticLibType.A
             job.apt_packages = []
             job.brew_packages.append("ninja")
-            if job.test_pkg_config:
-                job.brew_packages.append("pkg-config")
             if job.clang_tidy:
                 job.brew_packages.append("llvm")
             if spec.xcode:
